@@ -25,6 +25,7 @@ namespace NestedObjectAlgorythmTest
         [Fact]
         public void Lookup_Valid_ReturnsValue()
         {
+            //valid inputs
             string path = "prop1.prop2.prop3";
             var result = Program.Lookup(_objectData, path);
             Assert.Equal("Apple", result);
@@ -37,6 +38,7 @@ namespace NestedObjectAlgorythmTest
         [Fact]
         public void Lookup_InvalidPath_ThrowsException()
         {
+            //invalid path, doesn't exist
             string path = "prop1.prop4";
             var exception = Assert.Throws<Exception>(() => Program.Lookup(_objectData, path));
             Assert.Equal("Path not found.", exception.Message);
@@ -53,6 +55,7 @@ namespace NestedObjectAlgorythmTest
         [Fact]
         public void Lookup_PathIsObject_ThrowsException()
         {
+            //returned value is still an object
             string path = "prop1.prop2";
             var exception = Assert.Throws<Exception>(() => Program.Lookup(_objectData, path));
             Assert.Equal("This path returns an object, please go one level deeper.", exception.Message);
@@ -61,6 +64,7 @@ namespace NestedObjectAlgorythmTest
         [Fact]
         public void Lookup_Empty_ThrowsException()
         {
+            //empty input
             string path = "";
             var exception = Assert.Throws<Exception>(() => Program.Lookup(_objectData, path));
             Assert.Equal("Path not found.", exception.Message);
